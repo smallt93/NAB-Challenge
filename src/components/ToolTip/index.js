@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import {
   TooltipWrapper,
   TooltipTitle,
@@ -25,4 +25,4 @@ function ToolTip({
   );
 }
 
-export default ToolTip;
+export default memo(ToolTip);

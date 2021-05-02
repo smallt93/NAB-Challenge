@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { memo, useState, useEffect, useReducer } from 'react';
 import { useDebounce } from 'utils/useDebounce';
 
 import Loader from 'components/Loader';
@@ -6,18 +6,20 @@ import SearchBar from 'components/SearchBar';
 import WeatherInfor from 'containers/WeatherInfor';
 import { WeatherInforWrapper } from 'containers/WeatherInfor/WeatherInfor.styles';
 
+import { reducer, initialState } from 'store/reducer';
 import {
   fetchLocationList,
   fetchLocationSelected,
   updateSearchingStatus,
   resetLocationList,
+  resetCurLocationSelected,
 } from 'store/methods';
-import { reducer, initialState } from 'store/reducer';
 import {
   DashboardContainer,
   DashboardWrapper,
   SearchWrapper
 } from './Dashboard.styles';
+import background from 'assets/images/world-map.jpg';
 
 const Dashboard = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -50,8 +52,12 @@ const Dashboard = () => {
     fetchLocationSelected(dispatch, item.woeid);
   };
 
+  const onResetCurLocation = () => {
+    resetCurLocationSelected(dispatch);
+  }
+
   return (
-    <DashboardContainer>
+    <DashboardContainer bg={background}>
       <DashboardWrapper>
         <SearchWrapper>
           <SearchBar
@@ -73,7 +79,10 @@ const Dashboard = () => {
               <Loader size='large' />
             </WeatherInforWrapper>
           ) : ( curLocation && (
-              <WeatherInfor data={curLocation} />
+              <WeatherInfor
+                data={curLocation}
+                onResetCurLocation={onResetCurLocation}
+              />
             )
           ) 
         }
@@ -83,4 +92,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default memo(Dashboard);

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { getDayOfWeek } from 'utils/getToday';
 import { getIconWeather } from 'apis/weather';
 
+import WeatherDetail from 'containers/WeatherDetail';
 import humidity from 'assets/icons/humidity.svg'
 import wind from 'assets/icons/wind.svg'
 import noData from 'assets/icons/no-data.svg'
+
 import {
   WeatherInforWrapper,
+  WeatherHeaderWrapper,
   WeatherItem,
   WeatherContent,
   WeatherTemp,
@@ -16,7 +19,18 @@ import {
   NoDataIcon,
   NoDataText,
   TempMin,
+  TempMax,
 } from './WeatherInfor.styles';
+
+const WeatherHeader = () => (
+  <WeatherHeaderWrapper>
+    <div>Day</div>
+    <div>Temperature</div>
+    <div>Forecast</div>
+    <div>Humidity</div>
+    <div>Wind Compass</div>
+  </WeatherHeaderWrapper>
+)
 
 const weatherItem = item => {
   const {
@@ -32,14 +46,12 @@ const weatherItem = item => {
   return (
     <WeatherItem key={id}>
       <WeatherContent>
-        <p>
-          {getDayOfWeek(new Date(applicableDt))}
-        </p>
+        <div>{getDayOfWeek(new Date(applicableDt))}</div>
 
         <WeatherTemp>
           <TempMin>{Math.round(minTemp) + '°'}</TempMin>
           <p>/</p>
-          <p>{Math.round(maxTemp) + '°'}</p>
+          <TempMax>{Math.round(maxTemp) + '°'}</TempMax>
         </WeatherTemp>
 
         <WeatherCloud>
@@ -61,13 +73,20 @@ const weatherItem = item => {
   )
 }
 
-const WeatherInfor = ({ data = null }) => {
-console.log("🚀 ~ file: index.js ~ line 65 ~ WeatherInfor ~ data", data)
+const WeatherInfor = ({
+  data = null,
+  onResetCurLocation = () => {}
+}) => {
   if (data) {
     const { weatherList } = data;
 
     return (
       <WeatherInforWrapper>
+        <WeatherDetail
+          data={data}
+          onResetCurLocation={onResetCurLocation}
+        />
+        <WeatherHeader />
         {weatherList && weatherList.map(weatherItem)}
       </WeatherInforWrapper>
     )
@@ -82,4 +101,4 @@ console.log("🚀 ~ file: index.js ~ line 65 ~ WeatherInfor ~ data", data)
   )
 };
 
-export default WeatherInfor;
+export default memo(WeatherInfor);

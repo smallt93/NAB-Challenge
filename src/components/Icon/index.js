@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import ToolTip from 'components/ToolTip';
 import {
   IconWrapper,
   IconItem,
 } from './Icon.styles';
 
-const IconComponent = ({
+const Icon = ({
   text = '',
   iconUrl = '',
   iconSize = 1,
@@ -20,4 +20,4 @@ const IconComponent = ({
   );
 };
 
-export default IconComponent;
+export default memo(Icon);

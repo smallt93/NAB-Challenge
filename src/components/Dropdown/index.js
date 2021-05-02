@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { DropdownWrapper, DropdownItem } from './Dropdown.styles';
 
 const Dropdown = ({
@@ -32,4 +32,4 @@ const Dropdown = ({
   );
 };
 
-export default Dropdown;
+export default memo(Dropdown);

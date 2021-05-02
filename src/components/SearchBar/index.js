@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Icon from 'components/Icon';
 import Dropdown from 'components/Dropdown';
 import Loader from 'components/Loader';
@@ -55,4 +55,4 @@ const SearchBar = ({
   );
 };
 
-export default SearchBar;
+export default memo(SearchBar);

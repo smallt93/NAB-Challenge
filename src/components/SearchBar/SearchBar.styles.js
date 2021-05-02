@@ -5,8 +5,8 @@ export const SearchBarWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 2rem;
-  padding: ${({ theme }) => theme.rem(4)} ${({ theme }) => theme.rem(10)};
+  border-radius: .5rem;
+  padding: ${({ theme }) => theme.rem(4)} ${({ theme }) => theme.rem(8)};
   background-color: ${({ theme }) => theme.colors.white};
 `;
 

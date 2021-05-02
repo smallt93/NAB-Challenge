@@ -5,34 +5,62 @@ export const WeatherInforWrapper = styled.ul`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.white};
-  border-radius: 1rem;
+  overflow: hidden;
+  border-radius: .5em;
   padding: 0;
   width: 100%;
-  margin-bottom: 3rem;
-  min-height: 33rem;
+  min-height: 28em;
+  background-color: ${({ theme }) => theme.colors.white};
+`;
+
+export const WeatherHeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: calc(100% - 1em);
+  padding: 0 0.5em;
+  height: 3em;
+  background-color: #97979a;
+  color: ${({ theme }) => theme.colors.white};
+  > div {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #f5f5f5;
+    &:last-child {
+      border-right: none;
+    }
+  }
 `;
 
 export const WeatherItem = styled.li`
   width: 100%;
   display: flex;
-
-  &:last-child > div {
-    border: 0;
+  min-height: 5em;
+  &:nth-child(odd) {
+    background-color: #f2f2f2;
   }
 `;
 
 export const WeatherContent = styled.div`
-  border-bottom: 1px solid;
-  border-color: ${({ theme }) => theme.colors.borderGrey};
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   align-items: center;
   width: 100%;
-  padding: 0.5rem;
-  margin: 0.5rem 2rem;
+  padding: 0 0.5em;
   text-align: center;
+
+  > div {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #f5f5f5;
+    &:last-child {
+      border-right: none;
+    }
+  }
 
   p {
     color: ${({ theme }) => theme.colors.textPrimary};
@@ -47,20 +75,26 @@ export const WeatherTemp = styled.div`
 `
 
 export const TempMin = styled.p`
-  font-size: 1.3rem;
-  font-weight: 600;
+  color: #d53333;
+`
+
+export const TempMax = styled.p`
+  color: #000080;
 `
 
 export const WeatherCloud = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  p {
+    margin-top: .5em;
+  }
 `
 
 export const WeatherImage = styled.img`
-  width: 3rem;
-  margin-right: 1rem;
+  width: 2.5em;
+  margin-top: .5em;
 `
 
 export const WeatherIcon = styled.div`
@@ -70,7 +104,7 @@ export const WeatherIcon = styled.div`
   align-items: center;
 
   img {
-    width: 2rem;
+    width: 1.75rem;
     margin-right: 0.5rem;
   }
 `
