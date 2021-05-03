@@ -41,4 +41,6 @@ export const ClearSearch = styled.div`
   &:hover {
     opacity: 0.7;
   }
-` 
+`
+
+export const Empty = styled.div``;

@@ -17,9 +17,9 @@ const Dropdown = ({
 
   return (
     <DropdownWrapper>
-      {data.map((item) => (
+      {data.map((item, index) => (
         <DropdownItem
-          key={item.woeid}
+          key={index}
           onClick={() => onSelectedItem(item)}
           onMouseOver={() => onFocusIn(item.woeid)}
           onMouseOut={onFocusOut}

@@ -9,6 +9,7 @@ import {
   LocationListWrapper,
   SearchInput,
   ClearSearch,
+  Empty,
 } from './SearchBar.styles';
 
 const SearchBar = ({
@@ -27,7 +28,8 @@ const SearchBar = ({
       <Icon iconUrl={iconSearch} iconSize={1.5} />
       <SearchInput
         type='text'
-        placeholder='Search location'
+        data-testid='search-location'
+        placeholder='Search Location'
         onChange={onSearching}
         value={searchValue}
       />
@@ -35,10 +37,13 @@ const SearchBar = ({
       {isLoading
         ? <Loader />
         : searchValue ? (
-          <ClearSearch onClick={() => setSearchValue('')}>
+          <ClearSearch
+            className='search-reset'
+            onClick={() => setSearchValue('')}
+          >
             x
           </ClearSearch>
-        ) : <div />
+        ) : <Empty />
       }
       
       {isSearching && locationList && (
