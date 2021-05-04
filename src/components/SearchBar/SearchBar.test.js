@@ -66,7 +66,7 @@ describe('render SearchBar component', () => {
   it('should render reset button and call setSearchValue and set empty for search value', () => {
     const expected = {
       value: '',
-      trigger: true
+      trigger: false,
     }
     Component.setProps({
       isLoading: false,

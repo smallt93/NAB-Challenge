@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import ToolTip from 'components/ToolTip';
 import {
   IconWrapper,
   IconItem,
@@ -14,8 +13,6 @@ const Icon = ({
   return (
     <IconWrapper hover={showToolTip}>
       <IconItem iconUrl={iconUrl} iconSize={iconSize} />
-
-      {showToolTip && <ToolTip title={text} align='center' />}
     </IconWrapper>
   );
 };

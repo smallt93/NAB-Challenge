@@ -10,6 +10,7 @@ export const WeatherInforWrapper = styled.ul`
   padding: 0;
   width: 100%;
   min-height: 28em;
+  transition: all 300ms ease;
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
