@@ -17,12 +17,21 @@ const SearchBar = ({
   onSelectedItem = () => {},
   setSearchValue = () => {},
   setActiveId = () => {},
+  onResetLocationList = () => {},
   isSearching = false,
   isLoading = false,
   locationList = null,
   searchValue = '',
   activeId = 0,
 }) => {
+  const onClear = () => {
+    setSearchValue({
+      value: '',
+      trigger: false,
+    });
+    onResetLocationList();
+  };
+  
   return (
     <SearchBarWrapper searching={isSearching}>
       <Icon iconUrl={iconSearch} iconSize={1.5} />
@@ -39,7 +48,7 @@ const SearchBar = ({
         : searchValue ? (
           <ClearSearch
             className='search-reset'
-            onClick={() => setSearchValue('')}
+            onClick={onClear}
           >
             x
           </ClearSearch>

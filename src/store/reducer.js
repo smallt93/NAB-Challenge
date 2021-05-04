@@ -63,11 +63,8 @@ export function reducer(state, action) {
       };
     }
     case ACTION_TYPE.RESET_CURRENT_LOCATION_SELECTED:
-      return {
-        ...state,
-        curLocation: null,
-        isLoadWeather: false,
-      };
+      return initialState;
+
     default:
       return initialState;
   }

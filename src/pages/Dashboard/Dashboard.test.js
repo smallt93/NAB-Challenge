@@ -1,5 +1,6 @@
 import React from 'react';
 import Dashboard from 'pages/Dashboard';
+import * as methods from 'store/methods';
 import { mountWithTheme as mount } from 'utils/testHelper';
 
 describe('render Dashboard component', () => {
@@ -32,4 +33,13 @@ describe('render Dashboard component', () => {
   it('should match snapshot', () => {
     expect(Component).toMatchSnapshot();
   });
+
+  describe('useEffect hook when did mount', () => {
+    it('should call resetLocationList', () => {
+      methods.resetLocationList = jest.fn();
+      Component = mount(<Dashboard {...mockProps} />);
+  
+      expect(methods.resetLocationList).toHaveBeenCalledTimes(1);
+    });
+  })
 });

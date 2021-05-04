@@ -13,6 +13,7 @@ describe('render SearchBar component', () => {
     onSelectedItem: jest.fn(),
     setSearchValue: jest.fn(),
     setActiveId: jest.fn(),
+    onResetLocationList: jest.fn(),
     isSearching: false,
     isLoading: false,
     locationList: null,
@@ -63,6 +64,10 @@ describe('render SearchBar component', () => {
   });
 
   it('should render reset button and call setSearchValue and set empty for search value', () => {
+    const expected = {
+      value: '',
+      trigger: true
+    }
     Component.setProps({
       isLoading: false,
       searchValue: 'Vietnam',
@@ -72,7 +77,8 @@ describe('render SearchBar component', () => {
 
     ResetSearchBtn.simulate('click');
     expect(mockProps.setSearchValue).toHaveBeenCalledTimes(1);
-    expect(mockProps.setSearchValue).toHaveBeenCalledWith('');
+    expect(mockProps.setSearchValue).toHaveBeenCalledWith(expected);
+    expect(mockProps.onResetLocationList).toHaveBeenCalledTimes(1);
   });
 
   it('should render null when search value and locationList are empty', () => {

@@ -21,8 +21,11 @@ import {
 import background from 'assets/images/world-map.jpg';
 
 const Dashboard = () => {
-  const [searchValue, setSearchValue] = useState('');
-  const [searchValueDb, setSearchValueDb] = useState(searchValue);
+  const [searchValue, setSearchValue] = useState({
+    value: '',
+    trigger: false,
+  });
+  const [searchValueDb, setSearchValueDb] = useState(searchValue.value);
   const [activeId, setActiveId] = useState(0);
   const [{
     locationList,
@@ -35,34 +38,44 @@ const Dashboard = () => {
   // Handle debounce search value
   useEffect(() => {
     const debounce = setTimeout(() => {
-      setSearchValueDb(searchValue);
+      setSearchValueDb(searchValue.value);
     }, 500);
 
     return () => {
       clearTimeout(debounce);
     };
-  }, [searchValue]);
+  }, [searchValue.value]);
 
   useEffect(() => {
-    if (searchValueDb) {
+    if (searchValueDb && searchValue.trigger) {
       fetchLocationList(dispatch, searchValueDb);
     } else {
       resetLocationList(dispatch);
     }
-  }, [searchValueDb]);
+  }, [searchValueDb, searchValue.trigger]);
 
   const handleSearching = (e) => {
-    setSearchValue(e.target.value);
+    setSearchValue({
+      value: e.target.value,
+      trigger: true,
+    });
   };
 
   const handleSelectedItem = (item) => {
-    setSearchValue('');
+    setSearchValue({
+      value: item.title,
+      trigger: false, 
+    });
     setActiveId(item.woeid);
     updateSearchingStatus(dispatch, false);
     fetchLocationSelected(dispatch, item.woeid);
   };
 
   const onResetCurLocation = () => {
+    setSearchValue({
+      value: '',
+      trigger: false, 
+    });
     resetCurLocationSelected(dispatch);
   }
 
@@ -75,11 +88,12 @@ const Dashboard = () => {
             onSelectedItem={handleSelectedItem}
             setSearchValue={setSearchValue}
             setActiveId={setActiveId}
+            onResetLocationList={() => resetLocationList(dispatch)}
             isSearching={isSearching}
             isLoading={isLoading}
             locationList={locationList}
             activeId={activeId}
-            searchValue={searchValue}
+            searchValue={searchValue.value}
           />
         </SearchWrapper>
 
