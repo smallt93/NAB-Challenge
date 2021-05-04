@@ -2,8 +2,8 @@ import React, { memo, useState, useEffect, useReducer } from 'react';
 
 import Loader from 'components/Loader';
 import SearchBar from 'components/SearchBar';
-import WeatherInfor from 'containers/WeatherInfor';
-import { WeatherInforWrapper } from 'containers/WeatherInfor/WeatherInfor.styles';
+import WeatherInfor from 'components/WeatherInfor';
+import { WeatherInforWrapper } from 'components/WeatherInfor/WeatherInfor.styles';
 
 import { reducer, initialState } from 'store/reducer';
 import {

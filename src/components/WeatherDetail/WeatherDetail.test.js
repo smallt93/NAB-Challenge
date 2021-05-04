@@ -1,7 +1,7 @@
 import React from 'react';
-import WeatherDetail from 'containers/WeatherDetail';
+import WeatherDetail from 'components/WeatherDetail';
 import { mountWithTheme as mount } from 'utils/testHelper';
-import { ResetButton } from 'containers/WeatherDetail/WeatherDetail.styles';
+import { ResetButton } from 'components/WeatherDetail/WeatherDetail.styles';
 
 describe('render WeatherDetail component', () => {
   let Component;

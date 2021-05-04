@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { getDayOfWeek } from 'utils/getToday';
 import { getIconWeather } from 'apis/weather';
 
-import WeatherDetail from 'containers/WeatherDetail';
+import WeatherDetail from 'components/WeatherDetail';
 import humidity from 'assets/icons/humidity.svg'
 import wind from 'assets/icons/wind.svg'
 import noData from 'assets/icons/no-data.svg'

@@ -1,6 +1,6 @@
 import React from 'react';
-import WeatherInfor from 'containers/WeatherInfor';
-import { WeatherItem } from 'containers/WeatherInfor/WeatherInfor.styles';
+import WeatherInfor from 'components/WeatherInfor';
+import { WeatherItem } from 'components/WeatherInfor/WeatherInfor.styles';
 import { mountWithTheme as mount } from 'utils/testHelper';
 
 describe('render WeatherInfor component', () => {
