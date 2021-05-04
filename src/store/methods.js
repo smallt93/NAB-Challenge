@@ -17,6 +17,8 @@ export const fetchLocationList = async (dispatch, param) => {
   
   if (data && data.length > 0) {
     dispatch(actions.fetchLocationListSuccess(data));
+  } else {
+    dispatch(actions.fetchLocationListFailure())
   }
 }
 
@@ -34,11 +36,7 @@ export const fetchLocationSelected = async (dispatch, locationId) => {
     dispatch(actions.fetchCurLocationSelectedSuccess(data));
   }
 
-}
-
-export const setCurLocationId = (dispatch, param) => {
-  dispatch(setCurLocationId(param));
-}
+} 
 
 export const updateSearchingStatus = (dispatch, value) => {
   dispatch(actions.updateSearchingStatus(value));

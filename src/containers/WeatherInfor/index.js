@@ -32,9 +32,8 @@ const WeatherHeader = () => (
   </WeatherHeaderWrapper>
 )
 
-const weatherItem = item => {
+const weatherItem = (item, index) => {
   const {
-    id,
     applicable_date: applicableDt,
     min_temp: minTemp,
     max_temp: maxTemp,
@@ -44,7 +43,7 @@ const weatherItem = item => {
     wind_speed: windSpeed,
   } = item; 
   return (
-    <WeatherItem key={id}>
+    <WeatherItem key={index}>
       <WeatherContent>
         <div>{getDayOfWeek(new Date(applicableDt))}</div>
 

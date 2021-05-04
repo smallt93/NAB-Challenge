@@ -2,10 +2,9 @@ import axios from 'axios';
 
 const ALLOW_CORS = 'https://cors-anywhere.herokuapp.com';
 const BASE_API_URL = `${ALLOW_CORS}/https://www.metaweather.com/api`;
-const API_TIMEOUT = 30000;
 
 const apiClient = axios.create({
-  timeout: API_TIMEOUT,
+  timeout: 30000,
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
   },

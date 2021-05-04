@@ -1,5 +1,4 @@
 import React, { memo, useState, useEffect, useReducer } from 'react';
-import { useDebounce } from 'utils/useDebounce';
 
 import Loader from 'components/Loader';
 import SearchBar from 'components/SearchBar';
@@ -23,8 +22,8 @@ import background from 'assets/images/world-map.jpg';
 
 const Dashboard = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [searchValueDb, setSearchValueDb] = useState(searchValue);
   const [activeId, setActiveId] = useState(0);
-  const searchValueDb = useDebounce(searchValue, 500);
   const [{
     locationList,
     curLocation,
@@ -32,6 +31,17 @@ const Dashboard = () => {
     isSearching,
     isLoadWeather,
   }, dispatch] = useReducer(reducer, initialState);
+
+  // Handle debounce search value
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      setSearchValueDb(searchValue);
+    }, 500);
+
+    return () => {
+      clearTimeout(debounce);
+    };
+  }, [searchValue]);
 
   useEffect(() => {
     if (searchValueDb) {

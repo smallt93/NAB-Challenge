@@ -3,14 +3,13 @@ import { ACTION_TYPE } from './constants';
 export const initialState = {
   locationList: null,
   curLocation: null,
-  curLocationId: null,
   isLoading: false,
   isSearching: false,
   isLoadWeather: false,
 };
 
 export function reducer(state, action) {
-  switch (action.type) {
+  switch (action?.type) {
     case ACTION_TYPE.FETCH_LOCATION_LIST_PROCESSING:
       return {
         ...state,
@@ -22,6 +21,11 @@ export function reducer(state, action) {
         locationList: action.payload,
         isLoading: false,
       };
+    case ACTION_TYPE.FETCH_LOCATION_LIST_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+      }
     case ACTION_TYPE.RESET_LOCATION_LIST:
       return {
         ...state,
@@ -33,12 +37,7 @@ export function reducer(state, action) {
         ...state,
         isSearching: action.payload,
       };
-      
-    case ACTION_TYPE.SET_CURRENT_LOCATION_ID:
-      return {
-        ...state,
-        curLocationId: action.payload,
-      };
+
     case ACTION_TYPE.FETCH_CURRENT_LOCATION_SELECTED_PROCESSING:
       return {
         ...state,
@@ -55,7 +54,7 @@ export function reducer(state, action) {
       return {
         ...state,
         curLocation: {
-          weatherList: weatherList.slice(0,5),
+          weatherList: weatherList?.slice(0,5),
           locationName,
           timezone,
           curTime,
@@ -67,10 +66,9 @@ export function reducer(state, action) {
       return {
         ...state,
         curLocation: null,
-        curLocationId: null,
         isLoadWeather: false,
       };
     default:
-      return state;
+      return initialState;
   }
 }

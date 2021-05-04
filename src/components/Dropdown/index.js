@@ -17,7 +17,7 @@ const Dropdown = ({
 
   return (
     <DropdownWrapper>
-      {data.map((item, index) => (
+      {Array.isArray(data) && data.map((item, index) => (
         <DropdownItem
           key={index}
           onClick={() => onSelectedItem(item)}

@@ -33,11 +33,6 @@ export const updateSearchingStatus = (value) =>({
   payload: value,
 });
 
-export const setCurLocationId = (value) =>({
-  type: ACTION_TYPE.SET_CURRENT_LOCATION_ID,
-  payload: value,
-});
-
 export const resetLocationList = () =>({
   type: ACTION_TYPE.RESET_LOCATION_LIST,
 });
